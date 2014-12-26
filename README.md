@@ -1,6 +1,6 @@
-Projekt_ZTB
+ï»¿Projekt_ZTB
 ===========
 
-app - Ÿród³a aplikacji
-sql - skrypty SQL
-others - wszystko inne np. schematy architektury
+* app - ÅºrÃ³dÅ‚a aplikacji
+* sql - skrypty SQL
+* others - wszystko inne np. schematy architektury
