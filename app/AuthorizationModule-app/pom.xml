@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>AuthorizationModule-app</artifactId>
+	<packaging>war</packaging>
+	<name>AuthorizationModule-app</name>
+	<url>http://maven.apache.org</url>
+
+	<parent>
+		<groupId>edu.agh.ztb</groupId>
+		<artifactId>AuthorizationModule</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>edu.agh.ztb</groupId>
+			<artifactId>AuthorizationModule-model</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>AuthorizationModule-app</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>${java.build.version}</source>
+					<target>${java.build.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
