@@ -16,15 +16,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "USERS")
 @Data
 @NoArgsConstructor
 public class User {
 
 	@Id
 	@Column(name = "ID", updatable = false)
-	@SequenceGenerator(name = "USER_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
+	@SequenceGenerator(name = "USERS_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ")
 	private Long id;
 
 	@Column(name = "LOGIN", nullable = false, length = 25)
@@ -39,7 +39,7 @@ public class User {
 	@Column(name = "SURNAME", nullable = false, length = 100)
 	private String surname;
 
-	@Column(name = "EMAIL", nullable = false, length = 254)
+	@Column(name = "EMAIL", nullable = true, length = 254)
 	private String email;
 
 	@OneToMany(mappedBy = "userId")
