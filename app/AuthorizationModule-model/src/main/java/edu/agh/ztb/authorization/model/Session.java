@@ -35,7 +35,7 @@ public class Session implements Serializable {
 
 	@Id
 	@Column(name = "ID", updatable = false)
-	@SequenceGenerator(name = "SESSION_SEQ")
+	@SequenceGenerator(name = "SESSION_SEQ", sequenceName = "SESSION_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SESSION_SEQ")
 	private Long id;
 

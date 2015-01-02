@@ -32,7 +32,7 @@ public class User implements Serializable {
 
 	@Id
 	@Column(name = "ID", updatable = false)
-	@SequenceGenerator(name = "USERS_SEQ")
+	@SequenceGenerator(name = "USERS_SEQ", sequenceName = "USERS_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ")
 	private Long id;
 

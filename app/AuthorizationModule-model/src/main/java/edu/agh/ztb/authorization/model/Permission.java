@@ -29,7 +29,7 @@ public class Permission implements Serializable {
 
 	@Id
 	@Column(name = "ID", updatable = false)
-	@SequenceGenerator(name = "PERMISSION_SEQ")
+	@SequenceGenerator(name = "PERMISSION_SEQ", sequenceName = "PERMISSION_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERMISSION_SEQ")
 	private Long id;
 
