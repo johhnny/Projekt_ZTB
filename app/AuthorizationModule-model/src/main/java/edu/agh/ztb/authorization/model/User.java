@@ -1,10 +1,11 @@
 package edu.agh.ztb.authorization.model;
 
-import java.util.List;
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,14 +13,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "USERS")
-@Data
+@Getter
+@Setter
+@ToString(exclude = {"userRoles", "sessions"})
+@EqualsAndHashCode(exclude = {"userRoles", "sessions"})
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 7981044368149180318L;
 
 	@Id
 	@Column(name = "ID", updatable = false)
@@ -42,9 +51,9 @@ public class User {
 	@Column(name = "EMAIL", nullable = true, length = 254)
 	private String email;
 
-	@OneToMany(mappedBy = "userId")
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private Set<UserRole> userRoles;
 
-	@OneToMany(mappedBy = "userId")
-	private List<Session> sessions;
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private Set<Session> sessions;
 }

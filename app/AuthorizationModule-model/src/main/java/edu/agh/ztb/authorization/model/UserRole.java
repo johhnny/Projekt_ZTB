@@ -1,25 +1,38 @@
 package edu.agh.ztb.authorization.model;
 
-import javax.persistence.EmbeddedId;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "USER_ROLE")
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
-public class UserRole {
+public class UserRole implements Serializable {
 
-	@EmbeddedId
-	private UserRoleId id;
+	private static final long serialVersionUID = 2795249623162428935L;
 
-	@ManyToOne
+	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID")
 	private User user;
 
-	@ManyToOne
+	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ROLE_ID")
 	private Role role;
 }
