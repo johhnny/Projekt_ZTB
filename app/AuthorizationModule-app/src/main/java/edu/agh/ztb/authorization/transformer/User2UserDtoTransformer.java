@@ -3,6 +3,7 @@ package edu.agh.ztb.authorization.transformer;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.agh.ztb.authorization.dto.RoleDto;
 import edu.agh.ztb.authorization.dto.UserDto;
 import edu.agh.ztb.authorization.model.Role;
 import edu.agh.ztb.authorization.model.User;
@@ -10,7 +11,7 @@ import edu.agh.ztb.authorization.model.UserRole;
 
 public class User2UserDtoTransformer extends AbstractTransformer<User, UserDto> {
 
-	private Role2RoleDtoTransformer role2RoleDtoTransformer = new Role2RoleDtoTransformer();
+	private Transformer<Role, RoleDto> role2RoleDtoTransformer = new Role2RoleDtoTransformer();
 
 	@Override
 	public UserDto transform(User from) {
