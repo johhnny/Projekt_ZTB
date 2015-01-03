@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 public abstract class AbstractDao<T> {
 
-	@PersistenceContext(type = PersistenceContextType.EXTENDED)
+	@PersistenceContext(type = PersistenceContextType.TRANSACTION)
 	protected EntityManager entityManager;
 
 	protected final Class<T> entityClass;
