@@ -46,11 +46,14 @@ public class Session implements Serializable {
 	@Column(name = "TOKEN", updatable = false, nullable = false, unique = true, length = 36)
 	private String token;
 
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "START_TIME", updatable = false, nullable = false)
 	private Date startTime;
 
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "EXPIRATION_TIME", updatable = false, nullable = false)
 	private Date expirationTime;
+
+	@Column(name = "VALID", nullable = false)
+	private Boolean valid = Boolean.TRUE;
 }
