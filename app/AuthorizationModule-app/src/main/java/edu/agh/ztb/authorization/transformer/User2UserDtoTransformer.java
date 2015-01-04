@@ -21,7 +21,7 @@ public class User2UserDtoTransformer extends AbstractTransformer<User, UserDto> 
 				userRoles.add(userRole.getRole());
 			}
 		}
-		return UserDto.builder().email(from.getEmail()).login(from.getLogin()).name(from.getName()).password(from.getPassword()).surname(from.getSurname())
+		return UserDto.builder().email(from.getEmail()).login(from.getLogin()).name(from.getName()).surname(from.getSurname())
 				.userRoles(role2RoleDtoTransformer.transformCollection(userRoles)).build();
 	}
 

@@ -70,7 +70,7 @@ public class AuthorizationService {
 		}
 		session.setValid(false);
 		sessionDao.update(session);
-		return new ResponseEntity(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/checkPermissionForToken", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

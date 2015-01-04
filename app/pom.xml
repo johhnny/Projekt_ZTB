@@ -10,6 +10,7 @@
 	<modules>
 		<module>AuthorizationModule-model</module>
 		<module>AuthorizationModule-app</module>
+		<module>AuthorizationModule-dto</module>
 	</modules>
 
 	<properties>
