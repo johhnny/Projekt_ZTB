@@ -104,7 +104,6 @@ public class AuthorizationServiceTest {
 		Session session = new Session();
 		session.setToken(VALID_TOKEN);
 		session.setValid(true);
-		//rest
 		when(sessionDao.findByToken(VALID_TOKEN)).thenReturn(session);
 
 		//when
