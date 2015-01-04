@@ -1,5 +1,11 @@
 package edu.agh.ztb.authorization.service;
 
+import java.util.List;
+import java.util.Random;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import edu.agh.ztb.authorization.dao.UserDao;
 import edu.agh.ztb.authorization.dto.ErrorWrapper;
 import edu.agh.ztb.authorization.dto.RoleDto;
@@ -19,11 +25,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.List;
-import java.util.Random;
 
 @Service
 @RestController

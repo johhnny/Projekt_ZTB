@@ -123,4 +123,11 @@ public class AuthorizationService {
 		return (new Date()).compareTo(session.getExpirationTime()) >= 0 || !session.getValid();
 	}
 
+	public void setSessionDao(SessionDao sessionDao) {
+		this.sessionDao = sessionDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
 }
