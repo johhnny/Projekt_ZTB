@@ -120,7 +120,7 @@ public class AuthorizationService {
 	}
 
 	private boolean isTokenExpired(Session session) {
-		return (new Date()).compareTo(session.getExpirationTime()) >= 0 || !session.getValid();
+		return !session.getValid() || (new Date()).compareTo(session.getExpirationTime()) >= 0;
 	}
 
 	public void setSessionDao(SessionDao sessionDao) {

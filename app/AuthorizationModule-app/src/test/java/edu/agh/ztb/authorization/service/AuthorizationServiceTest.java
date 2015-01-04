@@ -108,7 +108,7 @@ public class AuthorizationServiceTest {
 		when(sessionDao.findByToken(VALID_TOKEN)).thenReturn(session);
 
 		//when
-		ResponseEntity response = authorizationService.invalidateToken(VALID_TOKEN);
+		ResponseEntity<?> response = authorizationService.invalidateToken(VALID_TOKEN);
 
 		//then
 		assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
