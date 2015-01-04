@@ -39,5 +39,31 @@
  
    <bean id="persistenceExceptionTranslationPostProcessor"
       class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-	
+
+	<bean id="expiredSessionInvalidationJob"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="expiredSessionInvalidationTask" />
+		<property name="targetMethod" value="invalidateSessions" />
+	</bean>
+
+	<bean id="expiredSessionInvalidationTrigger"
+		  class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<property name="jobDetail" ref="expiredSessionInvalidationJob" />
+		<property name="repeatInterval" value="900000" />
+		<property name="startDelay" value="900000" />
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="expiredSessionInvalidationJob" />
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="expiredSessionInvalidationTrigger" />
+			</list>
+		</property>
+	</bean>
+
 </beans>
