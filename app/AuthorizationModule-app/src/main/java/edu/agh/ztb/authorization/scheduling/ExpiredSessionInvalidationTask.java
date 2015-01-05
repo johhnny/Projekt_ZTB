@@ -13,14 +13,16 @@ import java.util.List;
 public class ExpiredSessionInvalidationTask {
 
 	@Autowired
-	private SessionDao sessionDao;
+	protected SessionDao sessionDao;
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void invalidateSessions() {
-		List<Session> sessions = sessionDao.findExpiredSessions ();
-		for (Session session : sessions) {
-			session.setValid(false);
-			sessionDao.update(session);
+		List<Session> sessions = sessionDao.findExpiredSessions();
+		if (sessions != null) {
+			for (Session session : sessions) {
+				session.setValid(false);
+				sessionDao.update(session);
+			}
 		}
 	}
 }

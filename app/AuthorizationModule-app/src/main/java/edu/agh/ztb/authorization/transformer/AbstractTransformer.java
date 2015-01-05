@@ -6,12 +6,12 @@ import java.util.List;
 
 public abstract class AbstractTransformer<F, T> implements Transformer<F, T> {
 
-	public List<T> transformCollection(Collection<F> list) {
-		if (list == null) {
-			return null;
+	public List<T> transformCollection(Collection<F> collection) {
+		if (collection == null) {
+			throw new NullPointerException("Input must not be null.");
 		}
 		List<T> result = new ArrayList<T>();
-		for (F from : list) {
+		for (F from : collection) {
 			result.add(transform(from));
 		}
 		return result;

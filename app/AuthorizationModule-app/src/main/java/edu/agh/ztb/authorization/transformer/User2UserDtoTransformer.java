@@ -15,6 +15,9 @@ public class User2UserDtoTransformer extends AbstractTransformer<User, UserDto> 
 
 	@Override
 	public UserDto transform(User from) {
+		if (from == null) {
+			throw new NullPointerException("Input must not be null.");
+		}
 		List<Role> userRoles = new ArrayList<Role>();
 		if (from.getUserRoles() != null) {
 			for (UserRole userRole : from.getUserRoles()) {
@@ -24,5 +27,4 @@ public class User2UserDtoTransformer extends AbstractTransformer<User, UserDto> 
 		return UserDto.builder().email(from.getEmail()).login(from.getLogin()).name(from.getName()).surname(from.getSurname())
 				.userRoles(role2RoleDtoTransformer.transformCollection(userRoles)).build();
 	}
-
 }

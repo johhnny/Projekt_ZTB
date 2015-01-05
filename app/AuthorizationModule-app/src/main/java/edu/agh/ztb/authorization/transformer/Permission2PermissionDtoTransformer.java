@@ -7,6 +7,9 @@ public class Permission2PermissionDtoTransformer extends AbstractTransformer<Per
 
 	@Override
 	public PermissionDto transform(Permission from) {
+		if (from == null) {
+			throw new NullPointerException("Input must not be null.");
+		}
 		return PermissionDto.builder().name(from.getName()).build();
 	}
 }

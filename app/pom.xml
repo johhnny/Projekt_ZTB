@@ -120,6 +120,16 @@
 				<artifactId>spring-context-support</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>edu.agh.ztb</groupId>
+				<artifactId>AuthorizationModule-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>edu.agh.ztb</groupId>
+				<artifactId>AuthorizationModule-dto</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

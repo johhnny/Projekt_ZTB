@@ -15,6 +15,9 @@ public class Role2RoleDtoTransformer extends AbstractTransformer<Role, RoleDto> 
 
 	@Override
 	public RoleDto transform(Role from) {
+		if (from == null) {
+			throw new NullPointerException("Input must not be null.");
+		}
 		List<Permission> rolePermissions = new ArrayList<Permission>();
 		if (from.getRolePermissions() != null) {
 			for (RolePermission rolePermission : from.getRolePermissions()) {
