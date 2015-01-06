@@ -9,9 +9,11 @@ import edu.agh.ztb.authorization.model.Session;
 import edu.agh.ztb.authorization.model.User;
 import edu.agh.ztb.authorization.model.UserRole;
 import edu.agh.ztb.authorization.transformer.User2UserDtoTransformer;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.xml.bind.DatatypeConverter;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -32,13 +35,14 @@ import java.util.UUID;
 @RestController
 public class AuthorizationService {
 
-	private static final int TOKEN_VALIDITY_DAYS = 30;
-
 	@Autowired
 	private UserDao userDao;
 
 	@Autowired
 	private SessionDao sessionDao;
+
+	@Value("${tokenValidityHours}")
+	private int tokenValidityHours;
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -54,7 +58,7 @@ public class AuthorizationService {
 		session.setStartTime(new Date());
 		session.setToken(UUID.randomUUID().toString());
 		session.setUser(user);
-		session.setExpirationTime(DateUtils.addDays(new Date(), TOKEN_VALIDITY_DAYS));
+		session.setExpirationTime(DateUtils.addHours(new Date(), tokenValidityHours));
 		sessionDao.insert(session);
 		UserDto userDto = new User2UserDtoTransformer().transform(user);
 		userDto.setCurrentToken(session.getToken());
