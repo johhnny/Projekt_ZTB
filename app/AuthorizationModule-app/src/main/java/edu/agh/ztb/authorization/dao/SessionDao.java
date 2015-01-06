@@ -22,11 +22,11 @@ public class SessionDao extends AbstractDao<Session> {
 	}
 
 	@Transactional(propagation = Propagation.MANDATORY)
-	public Session findByToken(String login) {
+	public Session findByToken(String token) {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Session> cq = cb.createQuery(Session.class);
 		Root<Session> root = cq.from(Session.class);
-		cq.select(root).where(cb.equal(root.get("token"), login));
+		cq.select(root).where(cb.equal(root.get("token"), token));
 		Session result = null;
 		try {
 			result = this.entityManager.createQuery(cq).getSingleResult();
