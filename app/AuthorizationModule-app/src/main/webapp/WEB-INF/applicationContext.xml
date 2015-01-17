@@ -22,23 +22,23 @@
       </property>
       <property name="jpaProperties">
          <props>
-            <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+            <prop key="hibernate.dialect">${hibernate.dialect}</prop>
             <prop key="hibernate.show_sql">${jdbc.showSql}</prop>
          </props>
       </property>
    </bean>
- 
+
    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="${jdbc.driver}" />
       <property name="url" value="${jdbc.url}" />
       <property name="username" value="${jdbc.username}" />
       <property name="password" value="${jdbc.password}" />
    </bean>
- 
+
    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
       <property name="entityManagerFactory" ref="entityManagerFactory" />
    </bean>
- 
+
    <bean id="persistenceExceptionTranslationPostProcessor"
       class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
@@ -51,8 +51,8 @@
 	<bean id="expiredSessionInvalidationTrigger"
 		  class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
 		<property name="jobDetail" ref="expiredSessionInvalidationJob" />
-		<property name="repeatInterval" value="900000" />
-		<property name="startDelay" value="900000" />
+		<property name="repeatInterval" value="${expiredSessionInvalidator.repeatInterval}" />
+		<property name="startDelay" value="${expiredSessionInvalidator.repeatInterval}" />
 	</bean>
 
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
