@@ -1,18 +1,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>AuthorizationModule-app</artifactId>
+	<artifactId>auth-ws</artifactId>
 	<packaging>war</packaging>
 	<name>AuthorizationModule-app</name>
 	<url>http://maven.apache.org</url>
 
 	<parent>
 		<groupId>edu.agh.ztb</groupId>
-		<artifactId>AuthorizationModule</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<artifactId>auth</artifactId>
+		<version>1.0</version>
 	</parent>
 
 	<dependencies>
+		<dependency>
+			<groupId>edu.agh.ztb</groupId>
+			<artifactId>auth-dto</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.agh.ztb</groupId>
+			<artifactId>auth-model</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -32,14 +42,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>edu.agh.ztb</groupId>
-			<artifactId>AuthorizationModule-model</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>edu.agh.ztb</groupId>
-			<artifactId>AuthorizationModule-dto</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -98,7 +100,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>AuthorizationModule</finalName>
+		<finalName>auth-ws</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
