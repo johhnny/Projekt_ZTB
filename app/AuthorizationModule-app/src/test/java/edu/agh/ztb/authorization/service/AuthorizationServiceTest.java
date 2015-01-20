@@ -1,35 +1,25 @@
 package edu.agh.ztb.authorization.service;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-
 import edu.agh.ztb.authorization.dao.SessionDao;
 import edu.agh.ztb.authorization.dao.UserDao;
 import edu.agh.ztb.authorization.dto.ErrorWrapper;
 import edu.agh.ztb.authorization.dto.UserDto;
-import edu.agh.ztb.authorization.model.Permission;
-import edu.agh.ztb.authorization.model.Role;
-import edu.agh.ztb.authorization.model.RolePermission;
-import edu.agh.ztb.authorization.model.Session;
-import edu.agh.ztb.authorization.model.User;
-import edu.agh.ztb.authorization.model.UserRole;
+import edu.agh.ztb.authorization.model.*;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
+
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class AuthorizationServiceTest {
 
@@ -95,6 +85,23 @@ public class AuthorizationServiceTest {
 		Assert.assertEquals(ErrorWrapper.class, body.getClass());
 		ErrorWrapper error = (ErrorWrapper) body;
 		assertThat(error.getErrorMessage(), containsString("User/Password combination is incorrect"));
+		verify(sessionDao, never()).insert(any(Session.class));
+	}
+
+	@Test
+	public void authenticate_shouldReturnUserNotFound() {
+		//given
+		when(userDao.findByLogin(LOGIN)).thenReturn(null);
+
+		//when
+		ResponseEntity<?> response = authorizationService.authenticate(LOGIN, INCORRECT_PASSWORD);
+
+		//then
+		assertThat(response.getStatusCode(), equalTo(HttpStatus.BAD_REQUEST));
+		Object body = response.getBody();
+		Assert.assertEquals(ErrorWrapper.class, body.getClass());
+		ErrorWrapper error = (ErrorWrapper) body;
+		assertThat(error.getErrorMessage(), containsString("User not found for given login"));
 		verify(sessionDao, never()).insert(any(Session.class));
 	}
 
